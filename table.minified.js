@@ -30,7 +30,6 @@ var Backend = /** @class */ (function () {
     Backend.AfterPost = function (data) {
         if (JSON.stringify(data) !== JSON.stringify(curent_data)) {
             $("#table tbody tr").remove();
-            console.log('not the same');
             if (curent_data.length !== data.length && is_sound_enabled)
                 PlaySound();
             for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
@@ -49,7 +48,6 @@ var Backend = /** @class */ (function () {
             $('.P').click(function () {
                 var page = $(this).attr('data-id');
                 var uid = $(this).parent().closest('tr').attr('id');
-                console.log(uid);
                 Backend.Post(server + "switcher.php", { uid: uid, page: page });
             });
             $('.D').click(function () {
@@ -60,7 +58,7 @@ var Backend = /** @class */ (function () {
             });
         }
         else {
-            console.log('the same');
+
         }
     };
     return Backend;
