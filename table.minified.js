@@ -19,13 +19,13 @@ var Backend = /** @class */ (function () {
     Backend.Post = function (url, body) {
         var _this = this;
         if (body === void 0) { body = {}; }
-        $.ajax({
+       /* $.ajax({
             type: "POST",
             url: url,
             data: body,
             success: function (data) { return _this.AfterPost(data); },
             dataType: "json"
-        });
+        });*/
     };
     Backend.AfterPost = function (data) {
         if (JSON.stringify(data) !== JSON.stringify(curent_data)) {
