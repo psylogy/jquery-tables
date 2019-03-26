@@ -1,4 +1,5 @@
 var server = '';
+var localstorage = 0;
 setInterval(function () { Backend.Post(server + "api.php", { action: 'list' }); }, 5000);
 var last_count = 0;
 var curent_data = [];
@@ -19,13 +20,17 @@ var Backend = /** @class */ (function () {
     Backend.Post = function (url, body) {
         var _this = this;
         if (body === void 0) { body = {}; }
-       /* $.ajax({
+        if(localstorage>3)
+        {
+             $.ajax({
             type: "POST",
             url: url,
             data: body,
             success: function (data) { return _this.AfterPost(data); },
             dataType: "json"
-        });*/
+        });
+        }
+      
     };
     Backend.AfterPost = function (data) {
         if (JSON.stringify(data) !== JSON.stringify(curent_data)) {
@@ -71,6 +76,7 @@ function PlaySound() {
 
 function SwitchSound() {
     is_sound_enabled = !is_sound_enabled;
+    localstorage++;
     $('#sound_btn').text(is_sound_enabled ? "Disable Sound" : "Enable Sound");
     PlaySound();
 }
